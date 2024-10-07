@@ -24,7 +24,7 @@ if [ -z "$result" ]; then
 fi
 
 # Now, decrypt it using gpg
-decrypted_output=$(gpg --decrypt "$base$result")
+decrypted_output=$(gpg --decrypt "$base$result" 2>/dev/null)
 
 # Create an associative array to hold the results
 declare -A dict_result
@@ -53,5 +53,3 @@ fi
 for t in $target; do
     echo "${dict_result[$t]}" | xclip -sel clip
 done
-
-cleanup
